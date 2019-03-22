@@ -1,0 +1,12 @@
+CREATE OR REPLACE TABLE "common_users" (
+	"user_id" serial PRIMARY KEY,
+	"user_name" varchar NOT NULL,
+	"user_link" varchar NOT NULL,
+	"visit_datetime" varchar NOT NULL,
+	"domain_name" varchar NOT NULL,
+	"activity_percent" integer NOT NULL,
+	"status" varchar NOT NULL,
+	"timestamp" TIMESTAMP NOT NULL
+) WITH (
+  OIDS=FALSE
+)
