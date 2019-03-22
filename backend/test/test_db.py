@@ -60,11 +60,7 @@ def db_select_tables(table_name):
 
 def test_db_interconnection():
     print(db_drop_table())
-    print(db_create())
-    print(db_data_insert_test("denis", "2019-03-22 01:33:22"))
-    print(db_data_insert_test("roma", "2019-02-12 11:53:22"))
-    print(db_data_insert_test("borya", "2017-12-12 05:03:24"))
-    print(db_data_select_test())
+
 
 
 test_db_interconnection()
