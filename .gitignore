@@ -1,0 +1,13 @@
+/.idea
+/.idea/interfaces.iml
+/.idea/lifegameservice.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+*.pyc
+*.bak
+*.info
+*.ini
+*__pycache__*
+.idea/*
+*.log
