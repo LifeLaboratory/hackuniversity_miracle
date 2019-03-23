@@ -62,6 +62,3 @@ def test_db_interconnection():
     print(db_drop_table())
 
 
-
-test_db_interconnection()
-

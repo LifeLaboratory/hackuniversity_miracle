@@ -1,0 +1,5 @@
+ID = "id"
+NAME = "name"
+DESCRIPTION = "description"
+STEPS = "steps"
+STATUS = "status"
