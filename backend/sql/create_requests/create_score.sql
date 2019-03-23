@@ -11,4 +11,3 @@ WITH (
 );
 ALTER TABLE public.recipe
   OWNER TO postgres;
-
