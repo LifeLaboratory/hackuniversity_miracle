@@ -23,3 +23,8 @@ WHERE
   r.id_recipe={id_recipe}
 ORDER BY ord
 """
+
+SQL_INSERT_SCORE = """
+INSERT INTO score (score, id_recipe, comment) 
+VALUES ({score}, {id_recipe}, '{comment}') RETURNING id_score
+"""
