@@ -1,5 +1,12 @@
 SQL_SELECT_RECIPE_LIST = """
-SELECT id_recipe, name, total_time FROM recipe LIMIT 20
+SELECT 
+  id_recipe
+  , name
+  , total_time
+  , description 
+FROM
+  recipe 
+LIMIT 20
 """
 
 SQL_SELECT_RECIPE_DESCRIPTION = """
