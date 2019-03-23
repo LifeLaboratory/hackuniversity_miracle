@@ -1,5 +1,12 @@
 SQL_SELECT_RECIPE_LIST = """
-SELECT id_recipe, name, total_time FROM recipe LIMIT 20
+SELECT 
+  id_recipe
+  , name
+  , total_time
+  , description 
+FROM
+  recipe 
+LIMIT 20
 """
 
 SQL_SELECT_RECIPE_DESCRIPTION = """
@@ -15,4 +22,9 @@ FROM recipe r
 WHERE 
   r.id_recipe={id_recipe}
 ORDER BY ord
+"""
+
+SQL_INSERT_SCORE = """
+INSERT INTO score (score, id_recipe, comment) 
+VALUES ({score}, {id_recipe}, '{comment}') RETURNING id_score
 """

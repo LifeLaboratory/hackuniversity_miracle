@@ -51,10 +51,37 @@ class RouteGetRecipeDescription(Resource):
 
 
 class RouteSetRecipeScore(Resource):
+    def __init__(self):
+        self._parser = reqparse.RequestParser()
+        self._parser.add_argument(names.ID_RECIPE)
+        self._parser.add_argument(names.SCORE)
+        self._parser.add_argument(names.COMMENT)
+        self.__args = self._parser.parse_args()
+
+    def parse_data(self):
+        try:
+            data = dict()
+            data[names.ID_RECIPE] = self.__args.get(names.ID_RECIPE, None)
+            data[names.SCORE] = self.__args.get(names.SCORE, None)
+            data[names.COMMENT] = self.__args.get(names.COMMENT, None)
+        except:
+            return errors.PARSE_DATA, None
+        if data[names.ID_RECIPE] is None or data[names.SCORE] is None or data[names.COMMENT] is None:
+            return errors.PARSE_DATA, None
+        else:
+            return errors.OK, data
+
     def post(self):
-        result = {"status": 0}
+        error, data = self.parse_data()
+        db_result = {}
+        if error == errors.OK:
+            db_message, db_result = gs.SqlQuery(sql_request.SQL_INSERT_SCORE.
+                                                format(id_recipe=data[names.ID_RECIPE],
+                                                       score=data[names.SCORE],
+                                                       comment=data[names.COMMENT]))
+            print(db_message)
         # return jsonify(result)
-        return result
+        return db_result
 
 
 
