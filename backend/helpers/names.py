@@ -1,0 +1,6 @@
+ID = "id"
+ID_RECIPE = "id_recipe"
+NAME = "name"
+DESCRIPTION = "description"
+STEPS = "steps"
+STATUS = "status"
