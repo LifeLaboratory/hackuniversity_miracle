@@ -3,6 +3,8 @@ from flask_restful import Resource, reqparse
 from flask import jsonify
 import backend.helpers.sql as sql_request
 from backend.api_db.api_pg import Gis as gs
+import backend.helpers.names as names
+import backend.helpers.base_errors as errors
 
 class RouteTest(Resource):
 
@@ -22,29 +24,30 @@ class RouteGetRecipeList(Resource):
 
 
 class RouteGetRecipeDescription(Resource):
+    def __init__(self):
+        self._parser = reqparse.RequestParser()
+        self._parser.add_argument(names.ID_RECIPE)
+        self.__args = self._parser.parse_args()
+
+    def parse_data(self):
+        try:
+            data = dict()
+            data[names.ID_RECIPE] = self.__args.get(names.ID_RECIPE, None)
+        except:
+            return errors.PARSE_DATA, None
+        if data[names.ID_RECIPE] is None:
+            return errors.PARSE_DATA, None
+        else:
+            return errors.OK, data
+
     def post(self):
-        result = {
-            "id": 1,
-            "name": "Last",
-            "description": "This is the best recipe",
-            "duration": 123,
-            "steps": [
-                {
-                    "id": 1,
-                    "seq_number": 1,
-                    "description": "Desc_1",
-                    "duration": 0
-                },
-                {
-                    "id": 2,
-                    "seq_number": 2,
-                    "description": "Desc_2",
-                    "duration": 122
-                }
-            ]
-        }
+        error, data = self.parse_data()
+        db_result = {}
+        if error == errors.OK:
+            db_message, db_result = gs.SqlQuery(sql_request.SQL_SELECT_RECIPE_DESCRIPTION.
+                                                format(id_recipe=data[names.ID_RECIPE]))
         # return jsonify(result)
-        return result
+        return db_result
 
 
 class RouteSetRecipeScore(Resource):
@@ -52,3 +55,6 @@ class RouteSetRecipeScore(Resource):
         result = {"status": 0}
         # return jsonify(result)
         return result
+
+
+

@@ -43,6 +43,7 @@ ANSWER = {
 }
 
 """
+
 ROUTES = {
     RouteTest: '/get_json_data',
     RouteGetRecipeList: '/get_recipe_list',

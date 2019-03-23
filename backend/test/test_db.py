@@ -1,5 +1,19 @@
 from backend.api_db.api_pg import Gis as gs
 
+SQL_SELECT_RECIPE_DESCRIPTION = """
+SELECT 
+  r.id_recipe AS id_recipe, 
+  r.description AS recipe_description,
+  rs.ord,
+  rs.time_step,
+  rs.description AS step_description
+FROM recipe r 
+  LEFT JOIN recipe_steps rs ON r.id_recipe=rs.id_recipe 
+WHERE 
+  r.id_recipe={id_recipe}
+ORDER BY ord
+"""
+
 SQL_CREATE_TABLE_TEST = """
 CREATE TABLE "common_users" (
 "user_id" serial PRIMARY KEY,
@@ -59,6 +73,6 @@ def db_select_tables(table_name):
 
 
 def test_db_interconnection():
-    print(db_drop_table())
+    print(gs.SqlQuery(SQL_SELECT_RECIPE_DESCRIPTION.format(id_recipe=1)))
 
-
+#test_db_interconnection()
