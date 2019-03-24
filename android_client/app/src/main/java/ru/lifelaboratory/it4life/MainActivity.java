@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new MainListAdapter(this, listForRecipe);
         lst.setAdapter(adapter);
         Retrofit server = new Retrofit.Builder()
-                .baseUrl("http://10.100.110.141:12452") //Базовая часть адреса
+                .baseUrl("http://192.168.43.137:12452") //Базовая часть адреса
                 .addConverterFactory(GsonConverterFactory.create()) //Конвертер, необходимый для преобразования JSON'а в объекты
                 .build();
         Recipe toServerRace = server.create(Recipe.class);

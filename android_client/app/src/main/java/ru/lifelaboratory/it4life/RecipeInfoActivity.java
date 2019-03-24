@@ -86,7 +86,7 @@ public class RecipeInfoActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             Retrofit server = new Retrofit.Builder()
-                                    .baseUrl("http://10.100.110.141:12452")
+                                    .baseUrl("http://192.168.43.137:12452")
                                     .addConverterFactory(GsonConverterFactory.create())
                                     .build();
                             Recipe toServerRace = server.create(Recipe.class);
@@ -142,7 +142,7 @@ public class RecipeInfoActivity extends AppCompatActivity {
         lst.setAdapter(adapter);
 
         Retrofit server = new Retrofit.Builder()
-                .baseUrl("http://10.100.110.141:12452") //Базовая часть адреса
+                .baseUrl("http://192.168.43.137:12452") //Базовая часть адреса
                 .addConverterFactory(GsonConverterFactory.create()) //Конвертер, необходимый для преобразования JSON'а в объекты
                 .build();
         Recipe toServerRace = server.create(Recipe.class);
@@ -153,7 +153,7 @@ public class RecipeInfoActivity extends AppCompatActivity {
                 listForRecipe.addAll(response.body());
                 adapter.notifyDataSetChanged();
                 String firstCommand = ". Сперва необходимо ".concat(listForRecipe.get(0).step_description);
-                new MainActivity.RetrieveFeedTask("Мне нужна твоя одежда и ".concat(title).concat(firstCommand)).execute();
+                new MainActivity.RetrieveFeedTask("Сейчас будем готовить ".concat(title).concat(firstCommand)).execute();
                 try {
                     Thread.sleep(10000);
                 } catch (InterruptedException e) {
@@ -243,7 +243,7 @@ public class RecipeInfoActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     Retrofit server = new Retrofit.Builder()
-                                            .baseUrl("http://10.100.110.141:12452")
+                                            .baseUrl("http://192.168.43.137:12452")
                                             .addConverterFactory(GsonConverterFactory.create())
                                             .build();
                                     Recipe toServerRace = server.create(Recipe.class);
